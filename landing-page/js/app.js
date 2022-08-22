@@ -19,19 +19,21 @@ function addNavItems(){
 }
 
 function smoothScrolling (){
-    //navUl.childElementCount
     const listItems = [...navUl.querySelectorAll('li')];
     listItems.map(function(listItem){
         const link = listItem.querySelector('a');
         const linkId = link.getAttribute('href');
         const clickedSection = document.querySelector(linkId);
-        console.log(yOffset);
         link.addEventListener('click', function (event){
             event.preventDefault();
             clickedSection.scrollIntoView({behavior: "smooth"});
         });
     });
 
+}
+
+function activeSections() {
+    
 }
 
 document.addEventListener('DOMContentLoaded', function callAllFuncs(){
