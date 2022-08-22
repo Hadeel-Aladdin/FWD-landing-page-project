@@ -18,4 +18,4 @@ function addNavItems(){
     nav.appendChild(fragement);
 }
 
-addNavItems();
+document.addEventListener('DOMContentLoaded', addNavItems());
