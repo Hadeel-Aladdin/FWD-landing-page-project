@@ -3,7 +3,7 @@
 // Global Variables:
 const fragement = document.createDocumentFragment();
 const sections = [...document.querySelectorAll('section')];
-const nav = document.querySelector('#navbar__list');
+const navUl = document.querySelector('#navbar__list');
 
 // Functions
 function addNavItems(){
@@ -15,7 +15,26 @@ function addNavItems(){
         li.innerHTML = `<a class = 'menu__link' href = '#${secId}'> ${secName} </a>`;
         fragement.appendChild(li);
     });
-    nav.appendChild(fragement);
+    navUl.appendChild(fragement);
 }
 
-document.addEventListener('DOMContentLoaded', addNavItems());
+function smoothScrolling (){
+    //navUl.childElementCount
+    const listItems = [...navUl.querySelectorAll('li')];
+    listItems.map(function(listItem){
+        const link = listItem.querySelector('a');
+        const linkId = link.getAttribute('href');
+        const clickedSection = document.querySelector(linkId);
+        console.log(yOffset);
+        link.addEventListener('click', function (event){
+            event.preventDefault();
+            clickedSection.scrollIntoView({behavior: "smooth"});
+        });
+    });
+
+}
+
+document.addEventListener('DOMContentLoaded', function callAllFuncs(){
+    addNavItems();
+    smoothScrolling();
+});
