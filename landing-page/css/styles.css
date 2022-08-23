@@ -95,7 +95,7 @@ section {
     background-color:#fff ;
     display: none;
     float: right;
-    margin-right: 2em;
+    margin-right: 4em;
 }
 
 .line{
@@ -125,11 +125,13 @@ section {
         background-color: #fff;
         top: 4.5em;
         display: flex;
+        gap:0;
         flex-direction: column;
         text-align: center;
         transition: 0.4s ease;
     }
     .nav__item{
+        margin: 0.3em 0;
         font-size: 1.5em;
     }
     #navbar__list.clicked{
