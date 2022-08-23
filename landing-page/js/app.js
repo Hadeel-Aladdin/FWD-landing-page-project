@@ -7,6 +7,7 @@
 const fragement = document.createDocumentFragment();
 const sections = [...document.querySelectorAll('section')];
 const navUl = document.querySelector('#navbar__list');
+const navIcon = document.querySelector('.menu__icon');
 
 
 // FUNCTIONS
@@ -20,7 +21,7 @@ function addNavItems(){
         const secId = section.getAttribute('id');
         // Create the list item to hold all these information inside the navbar
         const li = document.createElement('li');
-        //li.classList.add("nav__item");
+        li.classList.add("nav__item");
         li.innerHTML = `<a class = 'menu__link' href = '#${secId}'> ${secName} </a>`;
         // Append method doesn't cause document reflow or repaint
         fragement.appendChild(li);
@@ -80,4 +81,10 @@ document.addEventListener('DOMContentLoaded', function callAllFuncs(){
     smoothScrolling();
     activeSection();
     footerCopyrights();
+});
+
+// Make a responsive Navigation bar
+navIcon.addEventListener('click', function() {
+    navIcon.classList.toggle("clicked");
+    navUl.classList.toggle("clicked");
 });
