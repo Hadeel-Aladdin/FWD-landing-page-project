@@ -50,7 +50,7 @@ function smoothScrolling (){
 
 // Function to check if the section is near to the top of the window or not
 function activeSection() {
-    window.addEventListener('scrollTO', function (){
+    window.addEventListener('scroll', function (){
         sections.map(function (section){
             // Get the distance between the top of the window and the top of the section
             const sectionTop = section.getBoundingClientRect().top;
@@ -70,8 +70,14 @@ function activeSection() {
     });
 }
 
+function footerCopyrights (){
+  const footerSpan = document.getElementById('copyright');
+  footerSpan.innerHTML = new Date().getFullYear();
+}
+
 document.addEventListener('DOMContentLoaded', function callAllFuncs(){
     addNavItems();
     smoothScrolling();
     activeSection();
+    footerCopyrights();
 });
