@@ -1,7 +1,28 @@
 /* jshint esversion: 6*/
 
+/**
+ *
+ * Manipulating the DOM exercise.
+ * Exercise programmatically builds navigation,
+ * scrolls to anchors from navigation,
+ * and highlights section in viewport upon scrolling.
+ *
+ * Dependencies: None
+ *
+ * JS Version: ES2015/ES6
+ *
+ * JS Standard: ESlint
+ *
+*/
 
-// Global Variables:
+/**
+ * Comments should be present at the beginning of each procedure and class.
+ * Great to have comments before crucial code sections within the procedure.
+*/
+
+/*
+ * Define Global Variables
+*/
 
 // Create document fragement to avoid lots of reflow and repaint
 const fragement = document.createDocumentFragment();
@@ -9,10 +30,12 @@ const sections = [...document.querySelectorAll('section')];
 const navUl = document.querySelector('#navbar__list');
 const navIcon = document.querySelector('.menu__icon');
 
+/*
+ * End Global Variables
+ * Begin Main Functions
+*/
 
-// FUNCTIONS
-
-// Function That build the dynamic navbar items
+// Build the nav
 function addNavItems(){
     sections.map(function (section){
         // Get the name to refer to the section
@@ -30,7 +53,7 @@ function addNavItems(){
     navUl.appendChild(fragement);
 }
 
-// Function to make the scroll smooth
+// Scroll to anchor ID in a smooth movement
 function smoothScrolling (){
     const listItems = [...navUl.querySelectorAll('li')];
     listItems.map(function(listItem){
@@ -49,7 +72,7 @@ function smoothScrolling (){
 
 }
 
-// Function to check if the section is near to the top of the window or not
+// Add class 'active' to section when near top of viewport
 function activeSection() {
     window.addEventListener('scroll', function (){
         sections.map(function (section){
@@ -76,9 +99,17 @@ function footerCopyrights (){
   footerSpan.innerHTML = new Date().getFullYear();
 }
 
+/*
+ * End Main Functions
+ * Begin Events
+*/
+
 document.addEventListener('DOMContentLoaded', function callAllFuncs(){
+    // Build menu
     addNavItems();
+    // Scroll to section on link click
     smoothScrolling();
+    // Set sections as active
     activeSection();
     footerCopyrights();
 });
@@ -87,4 +118,5 @@ document.addEventListener('DOMContentLoaded', function callAllFuncs(){
 navIcon.addEventListener('click', function() {
     navIcon.classList.toggle("clicked");
     navUl.classList.toggle("clicked");
+    
 });

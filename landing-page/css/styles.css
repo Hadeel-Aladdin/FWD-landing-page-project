@@ -88,7 +88,9 @@ section {
     transition: ease 0.3s all;
 }
 
-/* Responsive Navigation styles*/
+/*
+*Responsive Navigation styles
+*/
 .menu__icon{
     background-color:#fff ;
     display: none;
