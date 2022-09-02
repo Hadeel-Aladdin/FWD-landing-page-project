@@ -94,6 +94,10 @@ function smoothScrolling (){
 
 // Add class 'active' to section when near top of viewport
 function activeSection() {
+    // We cann't declare the nav items as a global variable
+    // Because when running the script it will have a value of nothing
+    // Also declaring it in the 'DOMContentLoaded' event callback affect the performanse of the page
+    const listItems = [...navUl.querySelectorAll('li')];
     window.addEventListener('scroll', function (){
         sections.map(function (section, index){
             // Get the distance between the top of the window and the top of the section
@@ -108,6 +112,8 @@ function activeSection() {
             if (sectionTop <= 0.50*sectionHeight && sectionBottom > 0.50*sectionHeight){
                 if (!section.classList.contains('your-active-class')){
                     section.classList.add('your-active-class');
+                    // Highlight the Nav Item responding to the active section
+                    highlightNavItems(listItems[index], listItems[index].querySelector('a'));
                 }
                 if (index > 0){
                     sections[index-1].classList.remove('your-active-class');
