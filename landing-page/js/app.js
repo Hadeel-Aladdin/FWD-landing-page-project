@@ -75,16 +75,22 @@ function smoothScrolling (){
 // Add class 'active' to section when near top of viewport
 function activeSection() {
     window.addEventListener('scroll', function (){
-        sections.map(function (section){
+        sections.map(function (section, index){
             // Get the distance between the top of the window and the top of the section
             const sectionTop = section.getBoundingClientRect().top;
+            // Get the bottom of the section
+            const sectionBottom = section.getBoundingClientRect().bottom;
             // Get the section height
             const sectionHeight = section.getBoundingClientRect().height;
             // Check that the amount of section's content that appears is at least 60% of its height
-            // The 'smaller than' sign here because the inverse relationship between sectionTop and the amount of section's content that appears
-            if (sectionTop <= 0.60*sectionHeight){
+            // In the first operand, the 'smaller than' sign here denotes the inverse relationship between sectionTop and the amount of section's content that appears
+            // The second operand is to insure that the section is still in the viewport
+            if (sectionTop <= 0.50*sectionHeight && sectionBottom > 0.50*sectionHeight){
                 if (!section.classList.contains("your-active-class")){
                         section.classList.add("your-active-class");
+                }
+                if (index > 0){
+                  sections[index-1].classList.remove("your-active-class");
                 }
             } else{
                 // Check that not every section is set to be the active one while it isn't in the view
@@ -118,5 +124,5 @@ document.addEventListener('DOMContentLoaded', function callAllFuncs(){
 navIcon.addEventListener('click', function() {
     navIcon.classList.toggle("clicked");
     navUl.classList.toggle("clicked");
-    
+
 });
