@@ -35,6 +35,25 @@ const navIcon = document.querySelector('.menu__icon');
  * Begin Main Functions
 */
 
+// Highlights nav links when clicked and remove highlights form all siblings
+function highlightNavItems(navItem, aLink){
+    navItem.classList.add('active');
+    aLink.classList.add('active');
+    // We cann't declare the nav items as a global variable
+    // Because when running the script it will have a value of nothing
+    // Also declaring it in the 'DOMContentLoaded' event callback affect the performanse of the page
+    const listItems = [...navUl.querySelectorAll('li')];
+    listItems.map(function(item){
+      // Checking that these are the siblings not the navItm itself
+        if (item !== navItem){
+            if(item.classList.contains('active')){
+                item.classList.remove('active');
+                item.querySelector('a').classList.remove('active');
+            }
+        }
+    });
+}
+
 // Build the nav
 function addNavItems(){
     sections.map(function (section){
@@ -44,7 +63,7 @@ function addNavItems(){
         const secId = section.getAttribute('id');
         // Create the list item to hold all these information inside the navbar
         const li = document.createElement('li');
-        li.classList.add("nav__item");
+        li.classList.add('nav__item');
         li.innerHTML = `<a class = 'menu__link' href = '#${secId}'> ${secName} </a>`;
         // Append method doesn't cause document reflow or repaint
         fragement.appendChild(li);
@@ -66,7 +85,8 @@ function smoothScrolling (){
         link.addEventListener('click', function (event){
             event.preventDefault();
             // Make scrolling smooth process
-            clickedSection.scrollIntoView({behavior: "smooth"});
+            clickedSection.scrollIntoView({behavior: 'smooth'});
+            highlightNavItems(listItem, link);
         });
     });
 
@@ -86,15 +106,15 @@ function activeSection() {
             // In the first operand, the 'smaller than' sign here denotes the inverse relationship between sectionTop and the amount of section's content that appears
             // The second operand is to insure that the section is still in the viewport
             if (sectionTop <= 0.50*sectionHeight && sectionBottom > 0.50*sectionHeight){
-                if (!section.classList.contains("your-active-class")){
-                    section.classList.add("your-active-class");
+                if (!section.classList.contains('your-active-class')){
+                    section.classList.add('your-active-class');
                 }
                 if (index > 0){
-                    sections[index-1].classList.remove("your-active-class");
+                    sections[index-1].classList.remove('your-active-class');
                 }
             } else{
                 // Check that not every section is set to be the active one while it isn't in the view
-                section.classList.remove("your-active-class");
+                section.classList.remove('your-active-class');
             }
         });
     });
@@ -122,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function callAllFuncs(){
 
 // Make a responsive Navigation bar
 navIcon.addEventListener('click', function() {
-    navIcon.classList.toggle("clicked");
-    navUl.classList.toggle("clicked");
+    navIcon.classList.toggle('clicked');
+    navUl.classList.toggle('clicked');
 
 });
