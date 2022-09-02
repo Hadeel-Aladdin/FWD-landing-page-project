@@ -87,10 +87,10 @@ function activeSection() {
             // The second operand is to insure that the section is still in the viewport
             if (sectionTop <= 0.50*sectionHeight && sectionBottom > 0.50*sectionHeight){
                 if (!section.classList.contains("your-active-class")){
-                        section.classList.add("your-active-class");
+                    section.classList.add("your-active-class");
                 }
                 if (index > 0){
-                  sections[index-1].classList.remove("your-active-class");
+                    sections[index-1].classList.remove("your-active-class");
                 }
             } else{
                 // Check that not every section is set to be the active one while it isn't in the view
