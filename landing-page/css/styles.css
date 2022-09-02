@@ -91,6 +91,13 @@ section {
 /*
 *Responsive Navigation styles
 */
+.active{
+  background: #000;
+  color: #fff;
+}
+.menu__link.active{
+  color: #fff;
+}
 .menu__icon{
     background-color:#fff ;
     display: none;
